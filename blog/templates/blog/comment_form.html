@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <h1>New Comments</h1>
+  <form class="post-form"  method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="save btn btn-default">Post Comment</button>
+  </form>
+
+    <script>var editor=new MediumEditor('.editable');</script>
+
+{% endblock %}

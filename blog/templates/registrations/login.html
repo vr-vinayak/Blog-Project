@@ -1,0 +1,30 @@
+{%extends 'blog/base.html' %}
+{% load static %}
+{% block body_block %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <div class="jumbotron">
+    <h2>Please Log in.</h2>
+    <h3>(Must be Registered,If already registered you may login.)</h3>
+
+    {% if form.errors %}
+    <p>Your username and Password didn't match.Please Try Again</p>
+    {%endif%}
+
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+    <h4>
+      <label for="username">Username: </label>
+       <input type="text" name="username" placeholder="Enter your Username Here" maxlength="29" size="22"><br></h4>
+       <h1></h1>
+<h4>
+       <label for="password">Password: </label>
+       <input type="password" name="password" placeholder="Enter your Password Here" maxlength="25" size="22"><br></h4>
+
+         <h1></h1>
+
+      <input type="submit" class='btn btn-primary btn-lg'  value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+    </form>
+  </div>
+{%endblock%}
